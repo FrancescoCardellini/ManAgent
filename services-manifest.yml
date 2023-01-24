@@ -1,0 +1,12 @@
+# Generated services-manifest.yml based on template version 0.1.0
+# appName = ManAgent
+---
+create-services:
+# ------------------------------------------------------------
+  - name:   ManAgent-db
+    broker: hana  # 'hanatrial' on trial landscapes
+    plan: "hdi-shared"
+# ------------------------------------------------------------
+  - name:   ManAgent-xsuaa
+    broker: xsuaa
+    plan: application
