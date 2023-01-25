@@ -2,6 +2,7 @@ namespace managent;
 
 using {managed} from '@sap/cds/common';
 using {API_COMPANYCODE_SRV as extCompanyCode} from '../srv/external/API_COMPANYCODE_SRV.csn';
+using {API_BUSINESS_PARTNER as extBusinessPartner} from '../srv/external/API_BUSINESS_PARTNER.csn';
 
 
 // Tipi Condizione SD /IECPRAGE/T_TPC
@@ -29,4 +30,10 @@ entity t_tft : managed {
 entity CompayCode as projection on extCompanyCode.A_CompanyCode {
     key CompanyCode,
         CompanyCodeName
+}
+
+entity BusinessPartner as projection on extBusinessPartner.A_BusinessPartner {
+    key BusinessPartner,
+        FirstName,
+        LastName
 }

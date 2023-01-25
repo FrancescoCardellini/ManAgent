@@ -19,3 +19,23 @@ using managent as ma from '../db/schema';
     pstyv     @title : 'Categoria di posizione';
     zsegno    @title : 'Segno provvigione';
  } 
+
+annotate ma.t_tpc with {
+   bukrs @(Common : {
+    ValueList       : {
+    Label          : 'Company',
+    CollectionPath : 'CompanyCode',
+    Parameters     : [
+       {
+       $Type : 'Common.ValueListParameterInOut',
+       LocalDataProperty : bukrs,
+       ValueListProperty : 'CompanyCode'
+       },
+       {
+       $Type : 'Common.ValueListParameterDisplayOnly',
+       ValueListProperty : 'CompanyCodeName'
+       }
+    ]
+    }
+  });
+ }
