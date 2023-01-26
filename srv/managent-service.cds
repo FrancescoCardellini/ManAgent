@@ -9,5 +9,7 @@ service ManagentService {
     annotate t_tft with @odata.draft.enabled;
 
     entity CompanyCode as projection on ma.CompayCode;
+    entity SalesArea as projection on ma.SalesArea;
+    entity CondType as projection on ma.CondType;
     entity BusinessPartner as projection on ma.BusinessPartner;
 }

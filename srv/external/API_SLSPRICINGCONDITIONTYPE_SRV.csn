@@ -1,0 +1,421 @@
+{
+  "meta": {
+    "creator": "cds-dk 6.3.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "API_SLSPRICINGCONDITIONTYPE_SRV": {
+      "kind": "service",
+      "@cds.external": true,
+      "@m.IsDefaultEntityContainer": "true",
+      "@sap.message.scope.supported": "true",
+      "@sap.supported.formats": "atom json xlsx"
+    },
+    "API_SLSPRICINGCONDITIONTYPE_SRV.A_SlsPrcgCndnTypeText": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "Condition Type Text",
+      "elements": {
+        "Language": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2,
+          "@sap.label": "Language Key",
+          "notNull": true
+        },
+        "ConditionUsage": {
+          "key": true,
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Usage",
+          "@sap.quickinfo": "Usage of the condition table",
+          "notNull": true
+        },
+        "ConditionApplication": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Application",
+          "notNull": true
+        },
+        "ConditionType": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Condition Type",
+          "notNull": true
+        },
+        "ConditionTypeName": {
+          "type": "cds.String",
+          "length": 30,
+          "@sap.label": "Description",
+          "notNull": false
+        },
+        "to_SlsPricingConditionType": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "API_SLSPRICINGCONDITIONTYPE_SRV.A_SlsPricingConditionType",
+          "keys": []
+        }
+      }
+    },
+    "API_SLSPRICINGCONDITIONTYPE_SRV.A_SlsPrcgConditionFunctionText": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "Condition Function Descriptions",
+      "elements": {
+        "Language": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2,
+          "@sap.label": "Language Key",
+          "notNull": true
+        },
+        "ConditionUsage": {
+          "key": true,
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Usage",
+          "@sap.quickinfo": "Usage of the condition table",
+          "notNull": true
+        },
+        "ConditionApplication": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Application",
+          "notNull": true
+        },
+        "PricingConditionFunction": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Condition Function",
+          "notNull": true
+        },
+        "PricingConditionFunctionText": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.label": "Description",
+          "notNull": false
+        }
+      }
+    },
+    "API_SLSPRICINGCONDITIONTYPE_SRV.A_SlsPricingConditionType": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "Condition Types",
+      "elements": {
+        "ConditionUsage": {
+          "key": true,
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Usage",
+          "@sap.quickinfo": "Usage of the condition table",
+          "notNull": true
+        },
+        "ConditionApplication": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Application",
+          "notNull": true
+        },
+        "ConditionType": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Condition Type",
+          "notNull": true
+        },
+        "AccessSequence": {
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Access sequence",
+          "notNull": false
+        },
+        "ConditionClass": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Condition Class",
+          "notNull": false
+        },
+        "ConditionCalculationType": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Calculation Type",
+          "@sap.quickinfo": "Calculation Type for Condition",
+          "notNull": false
+        },
+        "ConditionCategory": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.label": "Condition Category",
+          "@sap.quickinfo": "Condition Category (Examples: Tax, Freight, Price, Cost)",
+          "notNull": false
+        },
+        "PrcgCndnAmountRoundingRule": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Rounding Rule",
+          "notNull": false
+        },
+        "PricingConditionFunction": {
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Condition Function",
+          "notNull": false
+        },
+        "StructureCondition": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Structure Condition",
+          "notNull": false
+        },
+        "PrcgConditionAmountSign": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Plus/Minus",
+          "@sap.quickinfo": "Plus/Minus Sign of the condition Amount",
+          "notNull": false
+        },
+        "IsGroupCondition": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Group Condition",
+          "notNull": false
+        },
+        "PrcgCndnRndngDiffsIsSettled": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "RoundDiffComp",
+          "@sap.quickinfo": "Rounding Difference Comparison",
+          "notNull": false
+        },
+        "PrcgGroupConditionRoutine": {
+          "type": "cds.String",
+          "length": 7,
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Group Cond. Routine",
+          "@sap.quickinfo": "Routine Number for Creating Group Key",
+          "notNull": false
+        },
+        "CndnManualEntries": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Manual Entries",
+          "@sap.quickinfo": "Making Manual Entries",
+          "notNull": false
+        },
+        "CndnAppliesHeader": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Header Condition",
+          "@sap.quickinfo": "Condition Applies to Header",
+          "notNull": false
+        },
+        "CndnAppliesItems": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Item Condition",
+          "@sap.quickinfo": "Condition Applies to Items",
+          "notNull": false
+        },
+        "PrcgCndnTypeDeletionIsAllowed": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Delete",
+          "@sap.quickinfo": "Delete the Scope for Changing Amount/Percentage",
+          "notNull": false
+        },
+        "PrcgCndnAmountChangedIsAllowed": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Amount/Percent",
+          "@sap.quickinfo": "Change of Condition Amount/Percentage",
+          "notNull": false
+        },
+        "PrcgCndnCnvrsnFctrChgIsAllowed": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Quantity Relation",
+          "@sap.quickinfo": "Scope for Changing Conversion Factors",
+          "notNull": false
+        },
+        "PrcgCndnValChgIsAllwd": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Value",
+          "@sap.quickinfo": "Scope for Changing the Value",
+          "notNull": false
+        },
+        "PrcgCndnPrpsdValidFromDateCode": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Proposed Valid From",
+          "@sap.quickinfo": "Proposed Start Date for the Validity Period",
+          "notNull": false
+        },
+        "PrcgCndnPrpsdValidToDateCode": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Proposed Valid To",
+          "@sap.quickinfo": "Proposed End Date for the Validity Period",
+          "notNull": false
+        },
+        "PricingProcedure": {
+          "type": "cds.String",
+          "length": 6,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Pricing Procedure",
+          "@sap.quickinfo": "Pricing Procedure in Pricing",
+          "notNull": false
+        },
+        "PrcgConditionDeletionMethod": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Delete from DB",
+          "@sap.quickinfo": "Condition records should be deleted from the database",
+          "notNull": false
+        },
+        "CndnIsRelevantForLimitValue": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Condition Update",
+          "notNull": false
+        },
+        "PricingScaleBasisShort": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Scale Base Type",
+          "notNull": false
+        },
+        "PricingScaleCheckingRule": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Check Scale",
+          "@sap.quickinfo": "Checking Rule for Scale Amounts",
+          "notNull": false
+        },
+        "PricingScaleType": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Scale Type",
+          "notNull": false
+        },
+        "PricingScaleRoutine": {
+          "type": "cds.String",
+          "length": 7,
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Scale Routine",
+          "@sap.quickinfo": "Routine for Alternative Calculation of Scale Base Value",
+          "notNull": false
+        },
+        "PricingScaleUnit": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Scale Unit",
+          "@sap.semantics": "unit-of-measure",
+          "notNull": false
+        },
+        "PrcgCndnCrcyCnvrsnIsAftMltpl": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Currency Conversion",
+          "@sap.quickinfo": "Indicator: Currency Translation after Multiplication",
+          "notNull": false
+        },
+        "IsRelevantForAccrual": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Accruals",
+          "@sap.quickinfo": "Condition is Relevant for Accrual (e.g. Freight)",
+          "notNull": false
+        },
+        "CndnIsForVariantConfiguration": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "UsedforVariantConfig",
+          "@sap.quickinfo": "Condition Used for Variant Configuration",
+          "notNull": false
+        },
+        "PrcgCndnQtyCnvrsnIsActivated": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Quantity Conversion",
+          "notNull": false
+        },
+        "CndnIsRelevantForIntcoBilling": {
+          "type": "cds.Boolean",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Intercomp.Billing",
+          "@sap.quickinfo": "Condition for Intercompany Billing",
+          "notNull": false
+        },
+        "PricingDateIdentificationCode": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Pricing Date",
+          "notNull": false
+        },
+        "CndnValueZeroProcgCode": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Zero Value Proc.",
+          "@sap.quickinfo": "Process Conditions with Value Equal to Zero",
+          "notNull": false
+        },
+        "to_Text": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "API_SLSPRICINGCONDITIONTYPE_SRV.A_SlsPrcgCndnTypeText",
+          "cardinality": {
+            "max": "*"
+          },
+          "keys": []
+        }
+      }
+    }
+  }
+}

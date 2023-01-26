@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "creator": "cds-dk 6.3.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "SALESAREA_0001.SalesArea": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "SalesOrganization": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.String",
+          "length": 4,
+          "@Common.IsUpperCase": true,
+          "@Common.Label": "Sales Organization",
+          "@Common.Heading": "SOrg."
+        },
+        "DistributionChannel": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.String",
+          "length": 2,
+          "@Common.IsUpperCase": true,
+          "@Common.Label": "Distribution Channel",
+          "@Common.Heading": "DChl"
+        },
+        "Division": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.String",
+          "length": 2,
+          "@Common.IsUpperCase": true,
+          "@Common.Label": "Division",
+          "@Common.Heading": "Dv"
+        }
+      },
+      "@Capabilities.SearchRestrictions": {
+        "Searchable": false
+      },
+      "@Capabilities.InsertRestrictions": {
+        "Insertable": false
+      },
+      "@Capabilities.DeleteRestrictions": {
+        "Deletable": false
+      },
+      "@Capabilities.UpdateRestrictions": {
+        "Updatable": false,
+        "QueryOptions": {
+          "SelectSupported": true
+        }
+      },
+      "@Core.OptimisticConcurrency": [],
+      "@Capabilities.FilterRestrictions": {
+        "FilterExpressionRestrictions": [
+          {
+            "Property": {
+              "=": "SalesOrganization"
+            },
+            "AllowedExpressions": "MultiValue"
+          },
+          {
+            "Property": {
+              "=": "DistributionChannel"
+            },
+            "AllowedExpressions": "MultiValue"
+          },
+          {
+            "Property": {
+              "=": "Division"
+            },
+            "AllowedExpressions": "MultiValue"
+          }
+        ]
+      }
+    },
+    "SALESAREA_0001": {
+      "kind": "service",
+      "@cds.external": true,
+      "@Aggregation.ApplySupported": {
+        "Transformations": [
+          "aggregate",
+          "groupby",
+          "filter"
+        ],
+        "Rollup": {
+          "#": "None"
+        }
+      },
+      "@Common.ApplyMultiUnitBehaviorForSortingAndFiltering": true,
+      "@Capabilities.FilterFunctions": [
+        "eq",
+        "ne",
+        "gt",
+        "ge",
+        "lt",
+        "le",
+        "and",
+        "or",
+        "contains",
+        "startswith",
+        "endswith",
+        "any",
+        "all"
+      ],
+      "@Capabilities.SupportedFormats": [
+        "application/json",
+        "application/pdf"
+      ],
+      "@Capabilities.KeyAsSegmentSupported": null,
+      "@Capabilities.AsynchronousRequestsSupported": null
+    }
+  }
+}

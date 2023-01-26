@@ -27,6 +27,8 @@ modules:
       - name: ManAgent-destination
     properties: #module properties for CF Apps can be consumed as app environment variables at runitime
       apikey_CompanyCode: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
+      apikey_SalesArea: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
+      apikey_CondType: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
 
   - name: ManAgent-db-deployer
     type: hdb
