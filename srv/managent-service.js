@@ -14,10 +14,7 @@ module.exports = cds.service.impl(async function () {
      * Each request to the API Business Hub requires the apikey in the header.
      */
     this.on("READ", CompanyCode, async (req) => {
-        // The API Sandbox returns alot of business partners with empty names.
-        // We don't want them in our application
         req.query.where("CompanyCode <> ''");
-
         return await CompanyCodeSrv.transaction(req).send({
             query: req.query,
             headers: {
