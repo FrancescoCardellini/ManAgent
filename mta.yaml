@@ -24,6 +24,7 @@ modules:
     requires:
       - name: ManAgent-db
       - name: ManAgent-xsuaa
+      - name: ManAgent-destination
     properties: #module properties for CF Apps can be consumed as app environment variables at runitime
       apikey_CompanyCode: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
 
@@ -77,3 +78,9 @@ resources:
       config:
         xsappname: managent-${space}
         tenant-mode: dedicated
+
+  - name: ManAgent-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite

@@ -61,15 +61,29 @@
       "API_BUSINESS_PARTNER": {
         "kind": "odata-v2",
         "model": "srv/external/API_BUSINESS_PARTNER",
-        "credentials": {
-          "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+        "[development]": {
+          "credentials": {
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+          }
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "API_BUSINESS_PARTNER"
+          }
         }
       },
       "API_COMPANYCODE_SRV": {
         "kind": "odata-v2",
         "model": "srv/external/API_COMPANYCODE_SRV",
-        "credentials": {
-          "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_COMPANYCODE_SRV"
+        "[development]": {
+          "credentials": {
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_COMPANYCODE_SRV"
+          }
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "API_COMPANYCODE_SRV"
+          }
         }
       }
     }
