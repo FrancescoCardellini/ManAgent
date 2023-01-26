@@ -75,5 +75,5 @@ resources:
       service-plan: application
       path: ./xs-security.json
       config:
-        xsappname: managent-${org}-${space}
+        xsappname: managent-${space}
         tenant-mode: dedicated
