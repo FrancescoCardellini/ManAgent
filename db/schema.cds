@@ -8,7 +8,6 @@ using {API_BUSINESS_PARTNER as extBusinessPartner} from '../srv/external/API_BUS
 
 
 // Tipi Condizione SD /IECPRAGE/T_TPC
-// test modifica GMONT1
 entity t_tpc : managed {
     key bukrs     : String(4);
     key vkorg     : String(4);
@@ -18,7 +17,7 @@ entity t_tpc : managed {
         parvw     : String(2);
         ztpprv    : String(2);
         znocon    : Boolean;
-        ztesto    : String(41);
+        ztesto    : String(40);
         fieldname : String(10);
 }
 
