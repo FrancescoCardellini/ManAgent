@@ -17,7 +17,7 @@ entity t_tpc : managed {
         parvw     : String(2);
         ztpprv    : String(2);
         znocon    : Boolean;
-        ztesto    : String(40);
+        ztesto    : String(39);
         fieldname : String(10);
 }
 
