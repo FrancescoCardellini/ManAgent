@@ -16,4 +16,6 @@ service ManagentService {
     entity CondType as projection on ma.CondType;
     entity BusinessPartner as projection on ma.BusinessPartner;
     entity Supplier as projection on ma.Supplier;
+
+    entity tpar as projection on ma.tpar;
 }
