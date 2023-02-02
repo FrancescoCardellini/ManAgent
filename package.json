@@ -6,12 +6,12 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/http-client": "2.14.0",
     "@sap/cds": "^6",
     "@sap/xssec": "3.2.17",
     "express": "^4",
     "hdb": "^0.19.0",
-    "passport": "^0.6.0",
-    "@sap-cloud-sdk/http-client": "2.14.0"
+    "passport": "^0.6.0"
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.102.15",
@@ -20,7 +20,8 @@
   "scripts": {
     "start": "cds run",
     "watch-t_tpc": "cds watch --open t_tpc/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-t_tft": "cds watch --open t_tft/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-t_tft": "cds watch --open t_tft/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-t_age": "cds watch --open t_age/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "engines": {
     "node": "^16.15"
@@ -118,6 +119,7 @@
   },
   "sapux": [
     "app/t_tpc",
-    "app/t_tft"
+    "app/t_tft",
+    "app/t_age"
   ]
 }

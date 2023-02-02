@@ -44,4 +44,22 @@ module.exports = cds.service.impl(async function () {
         });
     });
 
+    const { Supplier } = this.entities;
+
+    const SupplierSrv = await cds.connect.to("API_BUSINESS_PARTNER");
+
+    /**
+     * Event-handler for read-events on the CompanyCode entity.
+     * Each request to the API Business Hub requires the apikey in the header.
+     */
+    this.on("READ", Supplier, async (req) => {
+        req.query.where("Supplier <> ''");
+        return await SupplierSrv.transaction(req).send({
+            query: req.query,
+            headers: {
+                apikey: process.env.apikey_BusinessPartner,
+            },
+        });
+    });
+
 });

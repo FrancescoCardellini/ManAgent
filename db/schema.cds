@@ -8,7 +8,6 @@ using {API_BUSINESS_PARTNER as extBusinessPartner} from '../srv/external/API_BUS
 
 
 // Tipi Condizione SD /IECPRAGE/T_TPC
-// test modifica GMONT1
 entity t_tpc : managed {
     key bukrs     : String(4);
     key vkorg     : String(4);
@@ -18,7 +17,7 @@ entity t_tpc : managed {
         parvw     : String(2);
         ztpprv    : String(2);
         znocon    : Boolean;
-        ztesto    : String(39);
+        ztesto    : String(40);
         fieldname : String(10);
 }
 
@@ -49,4 +48,47 @@ entity BusinessPartner as projection on extBusinessPartner.A_BusinessPartner {
     key BusinessPartner,
         FirstName,
         LastName
+}
+
+entity Supplier as projection on extBusinessPartner.A_Supplier {
+    key Supplier,
+        SupplierName,
+        SupplierFullName,
+}
+
+// anagrafica agenti
+entity t_age: managed {
+KEY bukrs 		: String(4)		;
+KEY lifnr		: String(10)    ;
+KEY zdtini  	: Date          ;
+ztpage  	 	: String(1)     ;
+spras   	 	: String(1)     ;
+waers   	 	: String(5)     ;
+ztpsag  	 	: String(1)     ;
+zdtinc  	 	: Date          ;
+zdtfic  	 	: Date          ;
+zmaten  	 	: String(20)    ;
+ziccom  	 	: String(30)    ;
+zitrib  	 	: String(20)    ;
+ztpliq  	 	: String(1)     ;
+zaccon  	 	: String(1)     ;
+zminga  	 	: String(1)     ;
+zcongu  	 	: String(1)     ;
+zstpre  	 	: String(1)     ;
+ztpcag  	 	: String(1)     ;
+ztppre  	 	: String(3)     ;
+zterm   	 	: String(4)     ;
+kostl   	 	: String(10)    ;
+zperli  	 	: String(1)     ;
+ztpoda  	 	: String(3)     ;
+ztpeca  	 	: String(3)     ;
+ztpeaz  	 	: String(3)     ;
+ztpfir  	 	: String(3)     ;
+ztpind  	 	: String(3)     ;
+mwskz   	 	: String(2)     ;
+land1   	 	: String(3)     ;
+witht   	 	: String(3)     ;
+wt_withcd		: String(2)     ;
+ztpftf  	 	: String(3)     ;
+zdtfion 	 	: Date          ;
 }

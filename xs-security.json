@@ -6,6 +6,7 @@
   "oauth2-configuration": {
 		"redirect-uris": [
 			"https://da0afadftrial-dev-managent-approuter.cfapps.us10-001.hana.ondemand.com/**",
+      "https://e4a97101trial-dev-1vogx35e-gmont-dev-space-managent-approuter.cfapps.us10-001.hana.ondemand.com/**",
 			"https://present-s-p-a-managent-615e2suu-dev-managent-approuter.cfapps.us10-001.hana.ondemand.com/**"
 		]
 	}
