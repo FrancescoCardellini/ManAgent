@@ -29,6 +29,7 @@ modules:
       apikey_CompanyCode: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
       apikey_SalesArea: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
       apikey_CondType: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
+      apikey_BusinessPartner: "1Mvw17ffAGKw7OO2j3RHbcCD4Nher0MJ"
 
   - name: ManAgent-db-deployer
     type: hdb
