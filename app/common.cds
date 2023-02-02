@@ -20,6 +20,11 @@ annotate ma.t_tft with {
    zsegno @title : 'Segno provvigione';
 }
 
+annotate tpar with {
+   parvw     @title : 'Funzione Partner';
+   vtext     @title : 'Definizione';
+}
+
 annotate ma.t_tpc with {
    bukrs @(Common : {ValueList : {
       Label          : 'Company',
@@ -160,7 +165,6 @@ annotate ma.t_age with {
    ztpftf    @title : 'Tipo contabilizzazione fattura fornitore';
    zdtfion   @title : 'Data fine calcolo oneri';
 }
-
 
 annotate ma.t_age with {
    bukrs @(Common : {ValueList : {
