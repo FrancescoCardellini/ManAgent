@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="ManagentService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="t_tpc" EntityType="ManagentService.t_tpc">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="t_tpc"/>
+                </EntitySet>
+                <EntitySet Name="t_tft" EntityType="ManagentService.t_tft">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="t_tft"/>
+                </EntitySet>
+                <EntitySet Name="t_age" EntityType="ManagentService.t_age">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="t_age"/>
+                </EntitySet>
+                <EntitySet Name="t_tco" EntityType="ManagentService.t_tco">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="t_tco"/>
+                </EntitySet>
+                <EntitySet Name="CompanyCode" EntityType="ManagentService.CompanyCode"/>
+                <EntitySet Name="SalesArea" EntityType="ManagentService.SalesArea"/>
+                <EntitySet Name="CondType" EntityType="ManagentService.CondType"/>
+                <EntitySet Name="BusinessPartner" EntityType="ManagentService.BusinessPartner"/>
+                <EntitySet Name="Supplier" EntityType="ManagentService.Supplier"/>
+                <EntitySet Name="tpar" EntityType="ManagentService.tpar"/>
+                <EntitySet Name="dom_zcodpr" EntityType="ManagentService.dom_zcodpr"/>
+            </EntityContainer>
+            <EntityType Name="t_tpc">
+                <Key>
+                    <PropertyRef Name="bukrs"/>
+                    <PropertyRef Name="vkorg"/>
+                    <PropertyRef Name="vtweg"/>
+                    <PropertyRef Name="spart"/>
+                    <PropertyRef Name="kschl"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="vkorg" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="vtweg" Type="Edm.String" MaxLength="2" Nullable="false"/>
+                <Property Name="spart" Type="Edm.String" MaxLength="2" Nullable="false"/>
+                <Property Name="kschl" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="parvw" Type="Edm.String" MaxLength="2"/>
+                <Property Name="ztpprv" Type="Edm.String" MaxLength="2"/>
+                <Property Name="znocon" Type="Edm.Boolean"/>
+                <Property Name="ztesto" Type="Edm.String" MaxLength="40"/>
+                <Property Name="fieldname" Type="Edm.String" MaxLength="10"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="ManagentService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="ManagentService.t_tpc"/>
+            </EntityType>
+            <EntityType Name="t_tft">
+                <Key>
+                    <PropertyRef Name="vkorg"/>
+                    <PropertyRef Name="fkart"/>
+                    <PropertyRef Name="pstyv"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="vkorg" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="fkart" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="pstyv" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="zsegno" Type="Edm.String" MaxLength="1"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="ManagentService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="ManagentService.t_tft"/>
+            </EntityType>
+            <EntityType Name="t_age">
+                <Key>
+                    <PropertyRef Name="bukrs"/>
+                    <PropertyRef Name="lifnr"/>
+                    <PropertyRef Name="zdtini"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="lifnr" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="zdtini" Type="Edm.Date" Nullable="false"/>
+                <Property Name="ztpage" Type="Edm.String" MaxLength="1"/>
+                <Property Name="spras" Type="Edm.String" MaxLength="1"/>
+                <Property Name="waers" Type="Edm.String" MaxLength="5"/>
+                <Property Name="ztpsag" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zdtinc" Type="Edm.Date"/>
+                <Property Name="zdtfic" Type="Edm.Date"/>
+                <Property Name="zmaten" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ziccom" Type="Edm.String" MaxLength="30"/>
+                <Property Name="zitrib" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ztpliq" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zaccon" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zminga" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zcongu" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zstpre" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ztpcag" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ztppre" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zterm" Type="Edm.String" MaxLength="4"/>
+                <Property Name="kostl" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zperli" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ztpoda" Type="Edm.String" MaxLength="3"/>
+                <Property Name="ztpeca" Type="Edm.String" MaxLength="3"/>
+                <Property Name="ztpeaz" Type="Edm.String" MaxLength="3"/>
+                <Property Name="ztpfir" Type="Edm.String" MaxLength="3"/>
+                <Property Name="ztpind" Type="Edm.String" MaxLength="3"/>
+                <Property Name="mwskz" Type="Edm.String" MaxLength="2"/>
+                <Property Name="land1" Type="Edm.String" MaxLength="3"/>
+                <Property Name="witht" Type="Edm.String" MaxLength="3"/>
+                <Property Name="wt_withcd" Type="Edm.String" MaxLength="2"/>
+                <Property Name="ztpftf" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zdtfion" Type="Edm.Date"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="ManagentService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="ManagentService.t_age"/>
+            </EntityType>
+            <EntityType Name="t_tco">
+                <Key>
+                    <PropertyRef Name="bukrs"/>
+                    <PropertyRef Name="ztpcon"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="ztpcon" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="zcodpr" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zaccan" Type="Edm.Boolean"/>
+                <Property Name="zecaag" Type="Edm.Boolean"/>
+                <Property Name="zecaaz" Type="Edm.Boolean"/>
+                <Property Name="zifirr" Type="Edm.Boolean"/>
+                <Property Name="zincli" Type="Edm.Boolean"/>
+                <Property Name="zliqui" Type="Edm.Boolean"/>
+                <Property Name="zprefa" Type="Edm.Boolean"/>
+                <Property Name="ztesto" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="ManagentService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="ManagentService.t_tco"/>
+            </EntityType>
+            <EntityType Name="CompanyCode">
+                <Key>
+                    <PropertyRef Name="CompanyCode"/>
+                </Key>
+                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="CompanyCodeName" Type="Edm.String" MaxLength="25"/>
+            </EntityType>
+            <EntityType Name="SalesArea">
+                <Key>
+                    <PropertyRef Name="SalesOrganization"/>
+                    <PropertyRef Name="DistributionChannel"/>
+                    <PropertyRef Name="Division"/>
+                </Key>
+                <Property Name="SalesOrganization" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="DistributionChannel" Type="Edm.String" MaxLength="2" Nullable="false"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="CondType">
+                <Key>
+                    <PropertyRef Name="ConditionType"/>
+                </Key>
+                <Property Name="ConditionType" Type="Edm.String" MaxLength="4" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="BusinessPartner">
+                <Key>
+                    <PropertyRef Name="BusinessPartner"/>
+                </Key>
+                <Property Name="BusinessPartner" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="40"/>
+            </EntityType>
+            <EntityType Name="Supplier">
+                <Key>
+                    <PropertyRef Name="Supplier"/>
+                </Key>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="SupplierName" Type="Edm.String" MaxLength="80"/>
+                <Property Name="SupplierFullName" Type="Edm.String" MaxLength="220"/>
+            </EntityType>
+            <EntityType Name="tpar">
+                <Key>
+                    <PropertyRef Name="FunzionePartner"/>
+                </Key>
+                <Property Name="FunzionePartner" Type="Edm.String" MaxLength="2" Nullable="false"/>
+                <Property Name="Definizione" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="dom_zcodpr">
+                <Key>
+                    <PropertyRef Name="codice"/>
+                </Key>
+                <Property Name="codice" Type="Edm.String" MaxLength="2" Nullable="false"/>
+                <Property Name="descrizione" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_tpc"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="ManagentService.t_tpc"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_tft"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="ManagentService.t_tft"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_age"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="ManagentService.t_age"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_tco"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="ManagentService.t_tco"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_tpc"/>
+                <ReturnType Type="ManagentService.t_tpc"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_tft"/>
+                <ReturnType Type="ManagentService.t_tft"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_age"/>
+                <ReturnType Type="ManagentService.t_age"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_tco"/>
+                <ReturnType Type="ManagentService.t_tco"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_tpc"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="ManagentService.t_tpc"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_tft"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="ManagentService.t_tft"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_age"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="ManagentService.t_age"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ManagentService.t_tco"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="ManagentService.t_tco"/>
+            </Action>
+            <Annotations Target="ManagentService.EntityContainer/t_tpc">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="ManagentService.draftActivate"/>
+                        <PropertyValue Property="EditAction" String="ManagentService.draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="ManagentService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ManagentService.t_tpc/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                </Annotations>
+                <Annotations Target="ManagentService.t_tpc/createdBy">
+                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                    <Annotation Term="Core.Immutable" Bool="true"/>
+                    <Annotation Term="Core.Computed" Bool="true"/>
+                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                        </Annotations>
+                        <Annotations Target="ManagentService.t_tpc/modifiedAt">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                            </Annotations>
+                            <Annotations Target="ManagentService.t_tpc/modifiedBy">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                    </Annotations>
+                                    <Annotations Target="ManagentService.t_tpc/IsActiveEntity">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="ManagentService.t_tpc/HasActiveEntity">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="ManagentService.t_tpc/HasDraftEntity">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="ManagentService.t_tpc/DraftAdministrativeData">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="ManagentService.EntityContainer/t_tft">
+                                        <Annotation Term="Common.DraftRoot">
+                                            <Record Type="Common.DraftRootType">
+                                                <PropertyValue Property="ActivationAction" String="ManagentService.draftActivate"/>
+                                                <PropertyValue Property="EditAction" String="ManagentService.draftEdit"/>
+                                                <PropertyValue Property="PreparationAction" String="ManagentService.draftPrepare"/>
+                                            </Record>
+                                        </Annotation>
+                                    </Annotations>
+                                    <Annotations Target="ManagentService.t_tft/createdAt">
+                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                        <Annotation Term="Core.Immutable" Bool="true"/>
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                        <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                        </Annotations>
+                                        <Annotations Target="ManagentService.t_tft/createdBy">
+                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                </Annotations>
+                                                <Annotations Target="ManagentService.t_tft/modifiedAt">
+                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                    <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="ManagentService.t_tft/modifiedBy">
+                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                            <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                            </Annotations>
+                                                            <Annotations Target="ManagentService.t_tft/IsActiveEntity">
+                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                            </Annotations>
+                                                            <Annotations Target="ManagentService.t_tft/HasActiveEntity">
+                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                            </Annotations>
+                                                            <Annotations Target="ManagentService.t_tft/HasDraftEntity">
+                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                            </Annotations>
+                                                            <Annotations Target="ManagentService.t_tft/DraftAdministrativeData">
+                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                            </Annotations>
+                                                            <Annotations Target="ManagentService.EntityContainer/t_age">
+                                                                <Annotation Term="Common.DraftRoot">
+                                                                    <Record Type="Common.DraftRootType">
+                                                                        <PropertyValue Property="ActivationAction" String="ManagentService.draftActivate"/>
+                                                                        <PropertyValue Property="EditAction" String="ManagentService.draftEdit"/>
+                                                                        <PropertyValue Property="PreparationAction" String="ManagentService.draftPrepare"/>
+                                                                    </Record>
+                                                                </Annotation>
+                                                            </Annotations>
+                                                            <Annotations Target="ManagentService.t_age/createdAt">
+                                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                                                </Annotations>
+                                                                <Annotations Target="ManagentService.t_age/createdBy">
+                                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                    <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="ManagentService.t_age/modifiedAt">
+                                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                                            </Annotations>
+                                                                            <Annotations Target="ManagentService.t_age/modifiedBy">
+                                                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.t_age/IsActiveEntity">
+                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.t_age/HasActiveEntity">
+                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.t_age/HasDraftEntity">
+                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.t_age/DraftAdministrativeData">
+                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.EntityContainer/t_tco">
+                                                                                        <Annotation Term="Common.DraftRoot">
+                                                                                            <Record Type="Common.DraftRootType">
+                                                                                                <PropertyValue Property="ActivationAction" String="ManagentService.draftActivate"/>
+                                                                                                <PropertyValue Property="EditAction" String="ManagentService.draftEdit"/>
+                                                                                                <PropertyValue Property="PreparationAction" String="ManagentService.draftPrepare"/>
+                                                                                            </Record>
+                                                                                        </Annotation>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.t_tco/IsActiveEntity">
+                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.t_tco/HasActiveEntity">
+                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.t_tco/HasDraftEntity">
+                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.t_tco/DraftAdministrativeData">
+                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.EntityContainer/SalesArea">
+                                                                                        <Annotation Term="Capabilities.SearchRestrictions">
+                                                                                            <Record Type="Capabilities.SearchRestrictionsType">
+                                                                                                <PropertyValue Property="Searchable" Bool="false"/>
+                                                                                            </Record>
+                                                                                        </Annotation>
+                                                                                        <Annotation Term="Capabilities.InsertRestrictions">
+                                                                                            <Record Type="Capabilities.InsertRestrictionsType">
+                                                                                                <PropertyValue Property="Insertable" Bool="false"/>
+                                                                                            </Record>
+                                                                                        </Annotation>
+                                                                                        <Annotation Term="Capabilities.DeleteRestrictions">
+                                                                                            <Record Type="Capabilities.DeleteRestrictionsType">
+                                                                                                <PropertyValue Property="Deletable" Bool="false"/>
+                                                                                            </Record>
+                                                                                        </Annotation>
+                                                                                        <Annotation Term="Capabilities.UpdateRestrictions">
+                                                                                            <Record Type="Capabilities.UpdateRestrictionsType">
+                                                                                                <PropertyValue Property="Updatable" Bool="false"/>
+                                                                                                <PropertyValue Property="QueryOptions">
+                                                                                                    <Record Type="Capabilities.ModificationQueryOptionsType">
+                                                                                                        <PropertyValue Property="SelectSupported" Bool="true"/>
+                                                                                                    </Record>
+                                                                                                </PropertyValue>
+                                                                                            </Record>
+                                                                                        </Annotation>
+                                                                                        <Annotation Term="Capabilities.FilterRestrictions">
+                                                                                            <Record Type="Capabilities.FilterRestrictionsType">
+                                                                                                <PropertyValue Property="FilterExpressionRestrictions">
+                                                                                                    <Collection>
+                                                                                                        <Record Type="Capabilities.FilterExpressionRestrictionType">
+                                                                                                            <PropertyValue Property="Property" PropertyPath="SalesOrganization"/>
+                                                                                                            <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                                                                                        </Record>
+                                                                                                        <Record Type="Capabilities.FilterExpressionRestrictionType">
+                                                                                                            <PropertyValue Property="Property" PropertyPath="DistributionChannel"/>
+                                                                                                            <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                                                                                        </Record>
+                                                                                                        <Record Type="Capabilities.FilterExpressionRestrictionType">
+                                                                                                            <PropertyValue Property="Property" PropertyPath="Division"/>
+                                                                                                            <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                                                                                        </Record>
+                                                                                                    </Collection>
+                                                                                                </PropertyValue>
+                                                                                            </Record>
+                                                                                        </Annotation>
+                                                                                        <Annotation Term="Core.OptimisticConcurrency">
+                                                                                            <Collection/>
+                                                                                        </Annotation>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.SalesArea/SalesOrganization">
+                                                                                        <Annotation Term="Common.IsUpperCase" Bool="true"/>
+                                                                                        <Annotation Term="Common.Label" String="Sales Organization"/>
+                                                                                        <Annotation Term="Common.Heading" String="SOrg."/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.SalesArea/DistributionChannel">
+                                                                                        <Annotation Term="Common.IsUpperCase" Bool="true"/>
+                                                                                        <Annotation Term="Common.Label" String="Distribution Channel"/>
+                                                                                        <Annotation Term="Common.Heading" String="DChl"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.SalesArea/Division">
+                                                                                        <Annotation Term="Common.IsUpperCase" Bool="true"/>
+                                                                                        <Annotation Term="Common.Label" String="Division"/>
+                                                                                        <Annotation Term="Common.Heading" String="Dv"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ManagentService.DraftAdministrativeData">
+                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
+                                                                                        </Annotations>
+                                                                                        <Annotations Target="ManagentService.DraftAdministrativeData/DraftUUID">
+                                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                            <Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+                                                                                            </Annotations>
+                                                                                            <Annotations Target="ManagentService.DraftAdministrativeData/CreationDateTime">
+                                                                                                <Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
+                                                                                                </Annotations>
+                                                                                                <Annotations Target="ManagentService.DraftAdministrativeData/CreatedByUser">
+                                                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="ManagentService.DraftAdministrativeData/DraftIsCreatedByMe">
+                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
+                                                                                                        </Annotations>
+                                                                                                        <Annotations Target="ManagentService.DraftAdministrativeData/LastChangeDateTime">
+                                                                                                            <Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
+                                                                                                            </Annotations>
+                                                                                                            <Annotations Target="ManagentService.DraftAdministrativeData/LastChangedByUser">
+                                                                                                                <Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
+                                                                                                                </Annotations>
+                                                                                                                <Annotations Target="ManagentService.DraftAdministrativeData/InProcessByUser">
+                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
+                                                                                                                    </Annotations>
+                                                                                                                    <Annotations Target="ManagentService.DraftAdministrativeData/DraftIsProcessedByMe">
+                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+                                                                                                                        </Annotations>
+                                                                                                                    </Schema>
+                                                                                                                </edmx:DataServices>
+                                                                                                            </edmx:Edmx>

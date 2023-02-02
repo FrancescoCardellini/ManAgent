@@ -1,0 +1,12 @@
+bukrs;ztpcon;zcodpr;zaccan;zecaag;zecaaz;zifirr;zincli;zliqui;zprefa;ztesto;
+1010;ACC;AC;true;true;true;true;true;true;true;ACCONTI;
+1010;EAS;EA;;true;;;;;;ENASARCO CARICO AGENTE - F.DO ASS.;
+1010;ECA;EA;;true;;;;;;ENASARCO CARICO AGENTE;
+1010;EFA;EZ;;;true;;;;;ENASARCO CARICO AZIENDA - ASSISTENZA;
+1010;EFP;EZ;;;true;;;;;ENASARCO CARICO AZIENDA - PREVIDENZA;
+1010;FIR;FI;;;;true;;;;INDENNITA' FINE RAPPORTO;
+1010;IND;CL;;;;;true;;;INDENNITA' DI CLIENTELA;
+1010;PRE;PR;true;true;true;true;true;true;true;PREMI;
+1010;PRV;PV;true;true;true;true;true;true;true;PROVVIGIONI;
+1010;RFI;PV;true;true;true;true;true;true;true;RETTIFICHE PROVVIGIONI;
+1010;TRA;AC;true;true;true;true;true;true;true;TRATTENUTA ACCONTI;

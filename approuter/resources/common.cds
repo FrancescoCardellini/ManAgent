@@ -21,8 +21,8 @@ annotate ma.t_tft with {
 }
 
 annotate tpar with {
-   parvw     @title : 'Funzione Partner';
-   vtext     @title : 'Definizione';
+   FunzionePartner @title : 'Funzione Partner';
+   Definizione     @title : 'Definizione';
 }
 
 annotate ma.t_tpc with {
@@ -120,11 +120,11 @@ annotate ma.t_tpc with {
          {
             $Type             : 'Common.ValueListParameterInOut',
             LocalDataProperty : parvw,
-            ValueListProperty : 'parvw'
+            ValueListProperty : 'FunzionePartner'
          },
          {
             $Type             : 'Common.ValueListParameterDisplayOnly',
-            ValueListProperty : 'vtext'
+            ValueListProperty : 'Definizione'
          }
       ]
    }});
@@ -202,4 +202,108 @@ annotate ma.t_age with {
       ]
    }, })
 
+}
+
+annotate ma.t_tco with {
+   bukrs  @title : 'Società';
+   ztpcon @title : 'Tipologia contabilizzazione';
+   zcodpr @title : 'Codice provvigione interno';
+   zaccan @title : 'Rilevante per accantonamenti';
+   zecaag @title : 'Rilevante per "Enasarco carico agente"';
+   zecaaz @title : 'Rilevante per "Enasarco carico azienda"';
+   zifirr @title : 'Rilevante per "Indennità fine rapporto"';
+   zincli @title : 'Rilevante per "Indennità di clientela"';
+   zliqui @title : 'Rilevante per liquidazione';
+   zprefa @title : 'Rilevante per prefattura';
+   ztesto @title : 'Descrizione';
+
+   bukrs  @(Common : {ValueList : {
+      Label          : 'Company',
+      CollectionPath : 'CompanyCode',
+      Parameters     : [
+         {
+            $Type             : 'Common.ValueListParameterInOut',
+            LocalDataProperty : bukrs,
+            ValueListProperty : 'CompanyCode'
+         },
+         {
+            $Type             : 'Common.ValueListParameterDisplayOnly',
+            ValueListProperty : 'CompanyCodeName'
+         }
+      ]
+   }});
+   zcodpr @(Common : {ValueList : {
+      Label          : 'Codice',
+      CollectionPath : 'dom_zcodpr',
+      Parameters     : [
+         {
+            $Type             : 'Common.ValueListParameterInOut',
+            LocalDataProperty : zcodpr,
+            ValueListProperty : 'codice'
+         },
+         {
+            $Type             : 'Common.ValueListParameterDisplayOnly',
+            ValueListProperty : 'descrizione'
+         }
+      ]
+   }})
+}
+
+annotate ma.t_ctb with {
+   bukrs  @title : 'Società';
+   ztpctb @title : 'Tipo contributo';
+   zcodct @title : 'Codice contributo';
+   ztpcon @title : 'Tipologia contabilizzazione';
+   ztesto @title : 'Descrizione';
+
+   bukrs  @(Common : {ValueList : {
+      Label          : 'Company',
+      CollectionPath : 'CompanyCode',
+      Parameters     : [
+         {
+            $Type             : 'Common.ValueListParameterInOut',
+            LocalDataProperty : bukrs,
+            ValueListProperty : 'CompanyCode'
+         },
+         {
+            $Type             : 'Common.ValueListParameterDisplayOnly',
+            ValueListProperty : 'CompanyCodeName'
+         }
+      ]
+   }});
+   zcodct @(Common : {ValueList : {
+      Label          : 'Codice',
+      CollectionPath : 'dom_zcodct',
+      Parameters     : [
+         {
+            $Type             : 'Common.ValueListParameterInOut',
+            LocalDataProperty : zcodct,
+            ValueListProperty : 'codice'
+         },
+         {
+            $Type             : 'Common.ValueListParameterDisplayOnly',
+            ValueListProperty : 'descrizione'
+         }
+      ]
+   }});
+   ztpcon @(Common : {ValueList : {
+      Label          : 'Contabilizzazione',
+      CollectionPath : 't_tco',
+      Parameters     : [
+         {
+            $Type             : 'Common.ValueListParameterIn',
+            LocalDataProperty : bukrs,
+            ValueListProperty : 'bukrs'
+         },
+         {
+            $Type             : 'Common.ValueListParameterInOut',
+            LocalDataProperty : ztpcon,
+            ValueListProperty : 'ztpcon'
+         },
+         {
+            $Type             : 'Common.ValueListParameterDisplayOnly',
+            ValueListProperty : 'ztesto'
+         }
+      ]
+   }});
 }

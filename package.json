@@ -21,7 +21,9 @@
     "start": "cds run",
     "watch-t_tpc": "cds watch --open t_tpc/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-t_tft": "cds watch --open t_tft/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-t_age": "cds watch --open t_age/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-t_age": "cds watch --open t_age/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-t_tco": "cds watch --open t_tco/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-t_ctb": "cds watch --open t_ctb/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "engines": {
     "node": "^16.15"
@@ -53,8 +55,10 @@
   },
   "cds": {
     "requires": {
-      "db": {
-        "kind": "hana-cloud"
+      "[production]": {
+        "db": {
+          "kind": "hana-cloud"
+        }
       },
       "xsuaa": {
         "kind": "xsuaa"
@@ -120,6 +124,9 @@
   "sapux": [
     "app/t_tpc",
     "app/t_tft",
-    "app/t_age"
+    "app/t_age",
+    "app/t_tco",
+    "app/t_ctb",
+    "app/t_ctb"
   ]
 }

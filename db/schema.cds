@@ -93,7 +93,43 @@ entity t_age : managed {
         zdtfion   : Date;
 }
 
+// ruoli partner
 entity tpar {
-    parvw : String(2);
-    vtext : String(20);
+    key FunzionePartner : String(2);
+        Definizione     : String(20);
+}
+
+// codice provvigione interno
+entity dom_zcodpr {
+    key codice      : String(2);
+        descrizione : String;
+}
+
+// /IECPRAGE/T_TCO Tipologie contabilizzazioni
+entity t_tco {
+    key bukrs  : String(4);
+    key ztpcon : String(3);
+        zcodpr : String(2);
+        zaccan : Boolean;
+        zecaag : Boolean;
+        zecaaz : Boolean;
+        zifirr : Boolean;
+        zincli : Boolean;
+        zliqui : Boolean;
+        zprefa : Boolean;
+        ztesto : String;
+}
+
+// codice contributo
+entity dom_zcodct {
+    key codice      : String(2);
+        descrizione : String;
+}
+// /IECPRAGE/T_CTB Tipi contributi
+entity t_ctb {
+    key bukrs  : String(4);
+    key ztpctb : String(3);
+        zcodct : String(2);
+        ztpcon : String(3);
+        ztesto : String;
 }
