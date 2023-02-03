@@ -1,7 +1,7 @@
 using managent as ma from '../db/schema';
 
 annotate ma.t_tpc with {
-   bukrs     @title : 'Società';
+   bukrs     @title : '{i18n>Bukrs}';
    vkorg     @title : 'Organizzazione commerciale';
    vtweg     @title : 'Canale di distribuzione';
    spart     @title : 'Settore merceologico';
