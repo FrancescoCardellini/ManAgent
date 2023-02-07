@@ -20,7 +20,7 @@ annotate ma.t_tft with {
    zsegno @title: 'Segno provvigione';
 }
 
-annotate tpar with {
+annotate ma.tpar with {
    FunzionePartner @title: 'Funzione Partner';
    Definizione     @title: 'Definizione';
 }
