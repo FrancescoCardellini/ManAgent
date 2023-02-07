@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.102.15",
-    "sqlite3": "^5.0.4"
+    "sqlite3": "^5.1.4"
   },
   "scripts": {
     "start": "cds run",
@@ -58,6 +58,14 @@
       "[production]": {
         "db": {
           "kind": "hana-cloud"
+        }
+      },
+      "[development]": {
+        "db": {
+          "kind": "sqlite",
+          "credentials": {
+            "database": "managent-local.db"
+          }
         }
       },
       "xsuaa": {

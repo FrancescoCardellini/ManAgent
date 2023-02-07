@@ -1,6 +1,7 @@
 # CAP ManAgent
 _out
 *.db
+!managent-local.db
 *.sqlite
 connection.properties
 default-*.json
