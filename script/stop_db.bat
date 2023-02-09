@@ -1,1 +1,1 @@
-cf update-service managent -c .\stop.json
+cf update-service managent -c stop.json
