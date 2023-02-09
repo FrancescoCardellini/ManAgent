@@ -1,5 +1,8 @@
 namespace managent;
 
+// dichiarazione tipi
+define type tipo_liq : String(1);  // tipo liquidazione
+
 using {managed} from '@sap/cds/common';
 using {API_COMPANYCODE_SRV as extCompanyCode} from '../srv/external/API_COMPANYCODE_SRV.csn';
 using {SALESAREA_0001 as extSalesArea} from '../srv/external/SALESAREA_0001.csn';
@@ -132,4 +135,22 @@ entity t_ctb {
         zcodct : String(2);
         ztpcon : String(3);
         ztesto : String;
+}
+
+// Tipo società agente
+entity dom_ztpsag {
+    key codice      : String(2);
+        descrizione : String;
+}
+
+// Tipo liquidazione
+entity dom_ztpliq {
+    key codice      : tipo_liq;
+        descrizione : String;
+}
+
+// Regole registrazioni acconti
+entity dom_zaccon {
+    key codice      : String(1);
+        descrizione : String;
 }
