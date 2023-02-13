@@ -1,5 +1,5 @@
 {
-    "welcomeFile": "/app/index_approuter.html",
+    "welcomeFile": "/app/launchpage.html",
     "authenticationMethod": "route",
     "sessionTimeout": 30,
     "logout": {
