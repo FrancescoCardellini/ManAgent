@@ -1,1 +1,1 @@
-cf update-service managent -c ./start.json
+cf update-service managent -c start.json

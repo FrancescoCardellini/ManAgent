@@ -25,6 +25,11 @@ annotate ma.tpar with {
    Definizione     @title: 'Definizione';
 }
 
+annotate ma.dom_ztpliq with {
+   codice      @title: 'Tipo Liquidazione';
+   descrizione @title: 'Definizione';
+}
+
 annotate ma.t_tpc with {
    bukrs @(Common: {ValueList: {
       Label         : 'Company',
@@ -131,9 +136,9 @@ annotate ma.t_tpc with {
 }
 
 annotate ma.t_age with {
-   bukrs     @title: 'Società';
-   lifnr     @title: 'Fornitore';
-   zdtini    @title: 'Data Inizio';
+   @mandatory bukrs     @title: 'Società';
+   @mandatory lifnr     @title: 'Fornitore';
+   @mandatory zdtini    @title: 'Data Inizio';
    ztpage    @title: 'Tipo Contratto Agente';
    spras     @title: 'Lingua';
    waers     @title: 'Divisa';
@@ -200,8 +205,52 @@ annotate ma.t_age with {
             ValueListProperty: 'SupplierFullName'
          }
       ]
-   }, })
-
+   }, });
+   ztpsag @(Common: {ValueList: {
+      Label         : 'Tipo Soc Agente',
+      CollectionPath: 'dom_ztpsag',
+      Parameters    : [
+         {
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: ztpsag,
+            ValueListProperty: 'codice'
+         },
+         {
+            $Type            : 'Common.ValueListParameterDisplayOnly',
+            ValueListProperty: 'descrizione'
+         }
+      ]
+   }});
+   ztpliq @(Common: {ValueList: {
+      Label         : 'Tipo Liquidazione',
+      CollectionPath: 'dom_ztpliq',
+      Parameters    : [
+         {
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: ztpsag,
+            ValueListProperty: 'codice'
+         },
+         {
+            $Type            : 'Common.ValueListParameterDisplayOnly',
+            ValueListProperty: 'descrizione'
+         }
+      ]
+   }});
+   zaccon @(Common: {ValueList: {
+      Label         : 'Regole Registr. Acconti',
+      CollectionPath: 'dom_zaccon',
+      Parameters    : [
+         {
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: zaccon,
+            ValueListProperty: 'codice'
+         },
+         {
+            $Type            : 'Common.ValueListParameterDisplayOnly',
+            ValueListProperty: 'descrizione'
+         }
+      ]
+   }});
 }
 
 annotate ma.t_tco with {
