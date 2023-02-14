@@ -23,7 +23,8 @@
                         "additionalParameters": "allowed"
                     },
                     "semanticObject": "t_tpc",
-                    "action": "display"
+                    "action": "display",
+                    "icon": "sap-icon://lead"
                 }
             }
         },

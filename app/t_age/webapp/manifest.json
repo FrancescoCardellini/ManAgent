@@ -23,7 +23,8 @@
                         "additionalParameters": "allowed"
                     },
                     "semanticObject": "t_age",
-                    "action": "display"
+                    "action": "display",
+                    "icon": "sap-icon://supplier"
                 }
             }
         },
