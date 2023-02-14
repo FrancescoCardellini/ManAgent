@@ -1,140 +1,144 @@
 {
-  "name": "ManAgent",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap-cloud-sdk/http-client": "2.14.0",
-    "@sap/cds": "^6",
-    "@sap/xssec": "3.2.17",
-    "express": "^4",
-    "hdb": "^0.19.0",
-    "passport": "^0.6.0"
-  },
-  "devDependencies": {
-    "@sap/ux-specification": "^1.102.15",
-    "sqlite3": "^5.1.4"
-  },
-  "scripts": {
-    "start": "cds run",
-    "watch-t_tpc": "cds watch --open t_tpc/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-t_tft": "cds watch --open t_tft/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-t_age": "cds watch --open t_age/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-t_tco": "cds watch --open t_tco/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-t_ctb": "cds watch --open t_ctb/webapp/index.html?sap-ui-xx-viewCache=false"
-  },
-  "engines": {
-    "node": "^16.15"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es2020": true,
-      "node": true,
-      "jest": true,
-      "mocha": true
+    "name": "ManAgent",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap-cloud-sdk/http-client": "2.14.0",
+        "@sap/cds": "^6",
+        "@sap/xssec": "3.2.17",
+        "express": "^4",
+        "hdb": "^0.19.0",
+        "passport": "^0.6.0"
     },
-    "globals": {
-      "SELECT": true,
-      "INSERT": true,
-      "UPDATE": true,
-      "DELETE": true,
-      "CREATE": true,
-      "DROP": true,
-      "CDL": true,
-      "CQL": true,
-      "CXL": true,
-      "cds": true
+    "devDependencies": {
+        "@sap/ux-specification": "^1.102.15",
+        "sqlite3": "^5.1.4",
+        "rimraf": "^3.0.2"
     },
-    "rules": {
-      "no-console": "off",
-      "require-atomic-updates": "off"
-    }
-  },
-  "cds": {
-    "requires": {
-      "[production]": {
-        "db": {
-          "kind": "hana-cloud"
-        }
-      },
-      "[development]": {
-        "db": {
-          "kind": "sqlite",
-          "credentials": {
-            "database": "managent-local.db"
-          }
-        }
-      },
-      "xsuaa": {
-        "kind": "xsuaa"
-      },
-      "API_BUSINESS_PARTNER": {
-        "kind": "odata-v2",
-        "model": "srv/external/API_BUSINESS_PARTNER",
-        "[development]": {
-          "credentials": {
-            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
-          }
+    "scripts": {
+        "start": "cds run",
+        "watch-t_tpc": "cds watch --open t_tpc/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-t_tft": "cds watch --open t_tft/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-t_age": "cds watch --open t_age/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-t_tco": "cds watch --open t_tco/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-t_ctb": "cds watch --open t_ctb/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy ManAgent --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "engines": {
+        "node": "^16.15"
+    },
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "env": {
+            "es2020": true,
+            "node": true,
+            "jest": true,
+            "mocha": true
         },
-        "[production]": {
-          "credentials": {
-            "destination": "API_BUSINESS_PARTNER"
-          }
-        }
-      },
-      "API_COMPANYCODE_SRV": {
-        "kind": "odata-v2",
-        "model": "srv/external/API_COMPANYCODE_SRV",
-        "[development]": {
-          "credentials": {
-            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_COMPANYCODE_SRV"
-          }
+        "globals": {
+            "SELECT": true,
+            "INSERT": true,
+            "UPDATE": true,
+            "DELETE": true,
+            "CREATE": true,
+            "DROP": true,
+            "CDL": true,
+            "CQL": true,
+            "CXL": true,
+            "cds": true
         },
-        "[production]": {
-          "credentials": {
-            "destination": "API_COMPANYCODE_SRV"
-          }
+        "rules": {
+            "no-console": "off",
+            "require-atomic-updates": "off"
         }
-      },
-      "SALESAREA_0001": {
-        "kind": "odata",
-        "model": "srv/external/SALESAREA_0001",
-        "[development]": {
-          "credentials": {
-            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata4/sap/api_salesarea/srvd_a2x/sap/salesarea/0001"
-          }
-        },
-        "[production]": {
-          "credentials": {
-            "destination": "SALESAREA_0001"
-          }
+    },
+    "cds": {
+        "requires": {
+            "[production]": {
+                "db": {
+                    "kind": "hana-cloud"
+                }
+            },
+            "[development]": {
+                "db": {
+                    "kind": "sqlite",
+                    "credentials": {
+                        "database": "managent-local.db"
+                    }
+                }
+            },
+            "xsuaa": {
+                "kind": "xsuaa"
+            },
+            "API_BUSINESS_PARTNER": {
+                "kind": "odata-v2",
+                "model": "srv/external/API_BUSINESS_PARTNER",
+                "[development]": {
+                    "credentials": {
+                        "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+                    }
+                },
+                "[production]": {
+                    "credentials": {
+                        "destination": "API_BUSINESS_PARTNER"
+                    }
+                }
+            },
+            "API_COMPANYCODE_SRV": {
+                "kind": "odata-v2",
+                "model": "srv/external/API_COMPANYCODE_SRV",
+                "[development]": {
+                    "credentials": {
+                        "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_COMPANYCODE_SRV"
+                    }
+                },
+                "[production]": {
+                    "credentials": {
+                        "destination": "API_COMPANYCODE_SRV"
+                    }
+                }
+            },
+            "SALESAREA_0001": {
+                "kind": "odata",
+                "model": "srv/external/SALESAREA_0001",
+                "[development]": {
+                    "credentials": {
+                        "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata4/sap/api_salesarea/srvd_a2x/sap/salesarea/0001"
+                    }
+                },
+                "[production]": {
+                    "credentials": {
+                        "destination": "SALESAREA_0001"
+                    }
+                }
+            },
+            "API_SLSPRICINGCONDITIONTYPE_SRV": {
+                "kind": "odata-v2",
+                "model": "srv/external/API_SLSPRICINGCONDITIONTYPE_SRV",
+                "[development]": {
+                    "credentials": {
+                        "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_SLSPRICINGCONDITIONTYPE_SRV"
+                    }
+                },
+                "[production]": {
+                    "credentials": {
+                        "destination": "API_SLSPRICINGCONDITIONTYPE_SRV"
+                    }
+                }
+            }
         }
-      },
-      "API_SLSPRICINGCONDITIONTYPE_SRV": {
-        "kind": "odata-v2",
-        "model": "srv/external/API_SLSPRICINGCONDITIONTYPE_SRV",
-        "[development]": {
-          "credentials": {
-            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_SLSPRICINGCONDITIONTYPE_SRV"
-          }
-        },
-        "[production]": {
-          "credentials": {
-            "destination": "API_SLSPRICINGCONDITIONTYPE_SRV"
-          }
-        }
-      }
-    }
-  },
-  "sapux": [
-    "app/t_tpc",
-    "app/t_tft",
-    "app/t_age",
-    "app/t_tco",
-    "app/t_ctb",
-    "app/t_ctb"
-  ]
+    },
+    "sapux": [
+        "app/t_tpc",
+        "app/t_tft",
+        "app/t_age",
+        "app/t_tco",
+        "app/t_ctb",
+        "app/t_ctb"
+    ]
 }

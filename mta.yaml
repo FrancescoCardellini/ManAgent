@@ -1,89 +1,217 @@
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: ManAgent
+description: A simple CAP project.
 version: 1.0.0
-description: "A simple CAP project."
+modules:
+- name: ManAgent-srv
+  type: nodejs
+  path: gen/srv
+  properties:
+    apikey_BusinessPartner: 1Mvw17ffAGKw7OO2j3RHbcCD4Nher0MJ
+    apikey_CompanyCode: fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU
+    apikey_CondType: fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU
+    apikey_SalesArea: fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU
+  requires:
+  - name: ManAgent-db
+  - name: ManAgent-xsuaa
+  - name: ManAgent-destination
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm-ci
+- name: ManAgent-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: ManAgent-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: managent-approuter
+  type: nodejs
+  path: approuter
+  requires:
+  - name: ManAgent-xsuaa
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv-binding
+      strictSSL: true
+      url: ~{srv-url}
+  build-parameters:
+    requires:
+    - artifacts:
+      - ./*
+      name: managent-app
+      target-path: resources
+- name: managent-app
+  type: html5
+  path: app
+  build-parameters:
+    build-result: .
+    supported-platforms: []
+- name: ManAgent-destinations
+  type: com.sap.application.content
+  requires:
+  - name: ManAgent-xsuaa
+    parameters:
+      service-key:
+        name: ManAgent-xsuaa-key
+  - name: ManAgent-html5-repo-host
+    parameters:
+      service-key:
+        name: ManAgent-html5-repo-host-key
+  - name: srv-api
+  - name: ManAgent-destination
+    parameters:
+      content-target: true
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Authentication: OAuth2UserTokenExchange
+          Name: ManAgent-app-srv
+          TokenServiceInstanceName: ManAgent-xsuaa
+          TokenServiceKeyName: ManAgent-xsuaa-key
+          URL: ~{srv-api/srv-url}
+          sap.cloud.service: ManAgent.service
+        - Name: ManAgent-html5-repo-host
+          ServiceInstanceName: ManAgent-html5-repo-host
+          ServiceKeyName: ManAgent-html5-repo-host-key
+          sap.cloud.service: ManAgent.service
+        - Authentication: OAuth2UserTokenExchange
+          Name: ManAgent-xsuaa
+          ServiceInstanceName: ManAgent-xsuaa
+          ServiceKeyName: ManAgent-xsuaa-key
+          sap.cloud.service: ManAgent.service
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: ManAgent-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: ManAgent-html5-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - managentttpc.zip
+      name: managentttpc
+      target-path: resources/
+    - artifacts:
+      - ManAgenttage.zip
+      name: ManAgenttage
+      target-path: resources/
+    - artifacts:
+      - managenttctb.zip
+      name: managenttctb
+      target-path: resources/
+    - artifacts:
+      - managentttco.zip
+      name: managentttco
+      target-path: resources/
+    - artifacts:
+      - managentttft.zip
+      name: managentttft
+      target-path: resources/
+- name: managentttpc
+  type: html5
+  path: app/t_tpc
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: ManAgenttage
+  type: html5
+  path: app/t_age
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: managenttctb
+  type: html5
+  path: app/t_ctb
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: managentttco
+  type: html5
+  path: app/t_tco
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: managentttft
+  type: html5
+  path: app/t_tft
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: ManAgent-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: ManAgent-xsuaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: managent-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: ManAgent-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+    service: destination
+    service-plan: lite
+- name: ManAgent-html5-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
 parameters:
+  deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-    - builder: custom
-      commands:
-        - npx -p @sap/cds-dk cds build --production
-modules:
-  - name: ManAgent-srv
-    type: nodejs
-    path: gen/srv
-    parameters:
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm-ci
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
-    requires:
-      - name: ManAgent-db
-      - name: ManAgent-xsuaa
-      - name: ManAgent-destination
-    properties: #module properties for CF Apps can be consumed as app environment variables at runitime
-      apikey_CompanyCode: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
-      apikey_SalesArea: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
-      apikey_CondType: "fkyNKRV7KLrVWIqs4pUErOnEtx3ZQ1hU"
-      apikey_BusinessPartner: "1Mvw17ffAGKw7OO2j3RHbcCD4Nher0MJ"
-
-  - name: ManAgent-db-deployer
-    type: hdb
-    path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: ManAgent-db
-      
-  - name: managent-approuter
-    type: nodejs
-    path: approuter
-    requires:
-     - name: ManAgent-xsuaa
-     - name: srv-api
-       group: destinations
-       properties:
-        forwardAuthToken: true
-        strictSSL: true
-        name: srv-binding
-        url: "~{srv-url}"
-    build-parameters:
-     requires:
-       - name: managent-app
-         artifacts:
-         - ./*
-         target-path: resources
-         
-  - name: managent-app
-    type: html5
-    path: app
-    build-parameters:
-      supported-platforms: []
-
-
-resources:
-  - name: ManAgent-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
-
-  - name: ManAgent-xsuaa
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: managent-${space}
-        tenant-mode: dedicated
-
-  - name: ManAgent-destination
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: destination
-      service-plan: lite
+  - builder: custom
+    commands:
+    - npx -p @sap/cds-dk cds build --production
